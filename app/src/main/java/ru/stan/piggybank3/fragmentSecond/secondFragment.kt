@@ -27,6 +27,7 @@ class secondFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         if (savedInstanceState != null) {
             selectedDate = savedInstanceState.getString("selectedDate")
             selectedDate?.let {
@@ -35,13 +36,20 @@ class secondFragment : Fragment() {
         }
 
         binding.buttonList.setOnClickListener {
-            val inputText = binding.Text2.text.toString()
-            // Закрываем текущий фрагмент
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+        binding.buttonBack.setOnClickListener {
             requireActivity().supportFragmentManager.popBackStack()
         }
 
-        binding.buttonBack.setOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
+
+
+
+        if (savedInstanceState != null) {
+            selectedDate = savedInstanceState.getString("selectedDate")
+            selectedDate?.let {
+                binding.textView2.text = it
+            }
         }
 
         binding.imageView.setOnClickListener {
@@ -94,6 +102,9 @@ class secondFragment : Fragment() {
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putString("selectedDate", selectedDate)
+        outState.putBoolean("checkboxChecked", binding.myCheckbox.isChecked)
     }
+
+
 }
 

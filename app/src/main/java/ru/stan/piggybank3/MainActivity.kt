@@ -3,13 +3,16 @@ package ru.stan.piggybank3
 import android.os.Bundle
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
+import ru.stan.piggybank3.databinding.ActivityMainBinding
 import ru.stan.piggybank3.fragmentFirst.BlankFragment
 
 
 class MainActivity : AppCompatActivity() {
+    lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         if (savedInstanceState == null) {
             val fragmentContainer = findViewById<FrameLayout>(R.id.fragment_container2)

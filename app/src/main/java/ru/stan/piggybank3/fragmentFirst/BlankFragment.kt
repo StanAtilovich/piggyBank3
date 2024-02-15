@@ -39,6 +39,7 @@ class BlankFragment : Fragment() {
         binding.rcView.layoutManager = LinearLayoutManager(requireContext())
         binding.rcView.adapter = adapter
 
+
         binding.archiveView.setOnClickListener {
             binding.activeView.setTypeface(null, Typeface.NORMAL)
             binding.archiveView.setTypeface(null, Typeface.BOLD)
