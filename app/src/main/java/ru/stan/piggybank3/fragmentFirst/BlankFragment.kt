@@ -1,17 +1,17 @@
 package ru.stan.piggybank3.fragmentFirst
 
 import android.graphics.Typeface
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.stan.piggybank3.R
@@ -54,8 +54,8 @@ class BlankFragment : Fragment() {
         }
         binding.addBank.setOnClickListener {
             val fragmentTransaction = (activity as AppCompatActivity).supportFragmentManager.beginTransaction()
-            val secondFragment = secondFragment()
-            fragmentTransaction.replace(R.id.fragment_container, secondFragment)
+            val secondFragment = secondFragment() // Обратите внимание на правильное имя фрагмента
+            fragmentTransaction.replace(R.id.fragment_container2, secondFragment)
             fragmentTransaction.addToBackStack(null)
             fragmentTransaction.commit()
         }
@@ -68,11 +68,14 @@ class BlankFragment : Fragment() {
 
         val piggyBankApi = retrofit.create(PiggyBankApi::class.java)
 
-        CoroutineScope(Dispatchers.IO).launch {
-            val bank = piggyBankApi.getPiggyBankById()
-
-            requireActivity().runOnUiThread {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val bank = withContext(Dispatchers.IO) {
+                    piggyBankApi.getPiggyBankById()
+                }
                 adapter.submitList(bank.moneyboxes)
+            } catch (e: Exception) {
+
             }
         }
     }

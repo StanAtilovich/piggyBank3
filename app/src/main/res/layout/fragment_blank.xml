@@ -7,9 +7,27 @@
     tools:context=".fragmentFirst.BlankFragment">
 
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fragment_container2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+
+        <ImageButton
+            android:id="@+id/addBank"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="336dp"
+            android:layout_marginTop="300dp"
+            android:background="@color/white"
+            android:src="@drawable/round_add_box_24" />
+
+        <androidx.recyclerview.widget.RecyclerView
+
+            android:id="@+id/add_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_below="@+id/tabLayout"
+            android:visibility="visible" />
+    </FrameLayout>
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBarLayout"
@@ -70,8 +88,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rcView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="407dp"
+        android:layout_height="216dp"
         android:layout_below="@+id/tabLayout"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -93,19 +111,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tabLayout"
         app:layout_constraintVertical_bias="1.0" />
-    <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/add_list"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_below="@+id/tabLayout"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout"
-        app:layout_constraintVertical_bias="1.0" />
     <CheckedTextView
         android:id="@+id/activeView"
         android:layout_width="wrap_content"
@@ -131,18 +137,6 @@
         app:layout_constraintStart_toEndOf="@+id/activeView"
         app:layout_constraintTop_toTopOf="@+id/appBarLayout"
         app:layout_constraintVertical_bias="0.0" />
-
-    <ImageButton
-        android:id="@+id/addBank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="336dp"
-        android:layout_marginTop="504dp"
-        android:background="@color/white"
-        android:src="@drawable/round_add_box_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/archiveView" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
